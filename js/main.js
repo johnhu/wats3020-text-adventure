@@ -2,16 +2,15 @@
 let choiceList = ['p1'];
 let currentPage = null;
 
-// TODO: Create a function called `getCurrentPage()`. It should accept one
-// parameter, which is the `slug` for the current page. This function will fetch
-// the current page and return a page object using the `slug` value for a key.
+// This function will fetch the current page and return a page object using the
+// `slug` value for a key.
 function getCurrentPage(slug) {
     let newPage = storyData[slug];
     return newPage;
 }
 
-// TODO: Create a function called `recordChoice()` that will accept a `slug`
-// parameter and add it to the `choiceList` Array (probably using `push()`).
+//The function recordChoice() will accept the slug parameter and add it to
+//the choiceList array.
 function recordChoice(slug) {
     choiceList.push(slug);
 }
@@ -20,8 +19,7 @@ function recordChoice(slug) {
 //return the last `slug` in the `choiceList` Array.
 function undoChoice() {
     choiceList.pop();
-    let slug = choiceList[choiceList.length-1];
-    return slug;
+    return choiceList[choiceList.length-1];
 }
 
 // A DOM selector method (querySelector and getElementByID) sets the variable 
@@ -37,24 +35,17 @@ let choicesUL = document.querySelector('#choices');
 //     element with the text of page.choices[i].text. In addition, the <li>
 //     element should have an attribute called 'data-slug' set to
 //     page.choices[i].link.
-//  3. At the end of the function, call the function addEventListeners().
-
-function updatePage(newPage) {
-    pageContent.innerHTML = newPage.text;
+//  3.  addEventListeners() .
+function updatePage(storyPage) {
+    pageContent.innerHTML = storyPage.text;
     choicesUL.innerHTML = '';
-    for (let choice of newPage.choices) {
+    for (choice of storyPage.choices) {
         let newLI = document.createElement('li');
         newLI.innerHTML = choice.text;
         newLI.setAttribute('data-slug', choice.link);
         choicesUL.appendChild(newLI);
     }
     addEventListeners();
-}
-
-function changePage(slug){
-    recordChoice(slug);
-    let currentPage = getCurrentPage(slug);
-    updatePage(currentPage);
 }
 
 // `changePage()` accepts a parameter called
@@ -65,8 +56,11 @@ function changePage(slug){
 //     function (and give it the `slug` as a parameter).
 //  3. It should invoke the `updatePage()` function (and give it the
 //     `currentPage` object as a parameter).
-
-
+function changePage(slug){
+    recordChoice(slug);
+    let currentPage = getCurrentPage(slug);
+    updatePage(currentPage);
+}
 
 ///////////////////////////////////////////////////
 //////// Story Data //////////////////////////////
