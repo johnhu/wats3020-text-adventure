@@ -2,12 +2,6 @@
 let choiceList = ['p1'];
 let currentPage = null;
 
-///////////////////////////////////////////////////
-//////// TODOs ///////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-// Fill in the blanks below to complete each TODO task.                       //
-////////////////////////////////////////////////////////////////////////////////
-
 // TODO: Create a function called `getCurrentPage()`. It should accept one
 // parameter, which is the `slug` for the current page. This function will fetch
 // the current page and return a page object using the `slug` value for a key.
@@ -22,20 +16,22 @@ function recordChoice(slug) {
     choiceList.push(slug);
 }
 
-// TODO: Create a function called `undoChoice()` that will remove the last
-// `slug` in the `choiceList` Array and then will return the last `slug` in the
-// `choiceList` Array.
+// `undoChoice()` will remove the last`slug` in the `choiceList` Array and 
+//return the last `slug` in the `choiceList` Array.
+function undoChoice() {
+    choiceList.pop();
+    let slug = choiceList[choiceList.length-1];
+    return slug;
+}
 
-// TODO: Create two variables: pageContent and choicesUL. Use a DOM selector
-// method (such as querySelector or getElementByID) to set the variable 
-// pageContent to the <p> element with the ID of 'story-text' and set the
+// A DOM selector method (querySelector and getElementByID) sets the variable 
+// pageContent to the <p> element with the ID of 'story-text' and sets the
 // variable choicesUL to the <ul> element with the ID 'choices'.
 let pageContent = document.getElementById('story-text');
 let choicesUL = document.querySelector('#choices');
 
-// TODO: Create a function called `updatePage()` that accepts a `page` parameter
-// and handles displaying the page in three steps:
-//  1. It should set the text of the pageContent equal to page.text (the text of
+// updatePage()` accepts a `page` parameter and handles displaying the page in three steps:
+//  1. It sets the text of the pageContent equal to page.text (the text of
 //     the page).
 //  2. For each item in the array page.choices, it should create a new <li>
 //     element with the text of page.choices[i].text. In addition, the <li>
@@ -61,7 +57,7 @@ function changePage(slug){
     updatePage(currentPage);
 }
 
-// TODO: Create a function called `changePage()` that accepts a parameter called
+// `changePage()` accepts a parameter called
 // `slug` and which handles "turning the page" in three steps:
 //  1. It should call the `recordChoice()` function (and give it the `slug` as
 //     a parameter.
